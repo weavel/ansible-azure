@@ -1,0 +1,19 @@
+## Deploy a VM to azure with default settings ##
+
+- name: Deploy Azure ARM template.
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Create Azure Deploy
+      azure_rm_deployment:
+        state: present
+        resource_group_name: ZUY-RG-GRP06-EDU
+        template_link: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-windows/azuredeploy.json'
+        parameters:
+          adminUsername:
+            value: "rik"
+          adminPassword:
+            value: "Welkom01"
+          dnsLabelPrefix:
+            value: "localhost"
